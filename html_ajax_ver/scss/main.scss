@@ -1,0 +1,402 @@
+*{
+	box-sizing:border-box;
+}
+
+body{
+	@include fontSize(16px);
+	@include font($OpenSansRegular);
+	@include color($darkBlue);
+	@include lineHeight(130%);
+	margin: 0;	
+}
+
+h1,h2{
+	@include font($libreCaslon);
+	@include fontStyle( normal,bold);
+}
+
+h3{
+	@include font($OpenSansBold);
+}
+
+h4{
+	@include font($OpenSansSemibold);
+}
+
+
+a{
+	&:hover,
+	&:focus{
+		@include color($yellowGreen);
+		text-decoration: none;
+	}
+}
+
+img{
+	max-width: 100%;
+}
+
+$color:(whiteColor, blackColor, lightGray, gray, darkGray, green, lightGreen , yellowGreen, lightBlue, darkBlue);
+$val:($white, $black, $lightGray, $gray, $darkGray, $green, $lightGreen , $yellowGreen, $lightBlue, $darkBlue);
+$base-color: zip($color, $val);
+
+
+@each $c in $base-color {
+	.btn-#{nth($c, 1)} {
+		@include bgColor(nth($c, 2));
+		&:hover{
+			@include bgColor(darken(nth($c, 2),5%));
+			@include color($white);  
+			@if $c == 'white' {
+				@include color($darkBlue);
+			}
+		}
+		@if $c == 'white' {
+			@include color($darkBlue);
+		}
+	}
+
+	.text-#{nth($c, 1)} {
+		@include color(nth($c, 2));  
+	}
+}
+
+
+.btn{
+	@include color($white);    
+}
+
+.underline{
+	display: inline-block;
+	@each $c in $base-color {
+		&.text-#{nth($c, 1)}{
+			&::after{
+				@include bgColor(nth($c, 2));
+			}
+		}
+	}
+	&::after{
+		@include bgColor($darkBlue);
+		content: " ";
+		width: 50px;
+		height: 2px;
+		margin: 25px auto;
+		display: block;
+	}
+}
+
+header{
+	@include bgColor($darkBlue);
+	padding: 10px 0;
+	@media (max-width: 992px){
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 100;
+	}
+	.logo_wrapper{
+		text-align: center;
+		display: none;
+		max-width: 130px;
+		margin: 5px auto;
+		@media (max-width: 992px){
+			display: block;
+		}
+		@media (max-width: 768px){
+			margin: 5px 0;
+		}
+		.logo{
+			margin-left: -70px;
+			@media (max-width: 768px){
+				margin-left: 0;
+			}
+		}
+	}
+
+	.btn_wrapper{
+		margin: 4px 0;
+		@include font($OpenSansSemibold);
+		@include color($white);
+		.btn-lightGreen{
+			&:hover{
+				@include bgColor(#72a50d);
+			}
+		}
+		.btn-transparent{
+			&:hover{
+				@include color($yellowGreen);
+			}
+		}
+	}
+
+	.login_wrapper{
+		@include color($white);
+		@include fontSize(14px);
+		margin: 8px 0;
+		text-align: right;
+		@media (min-width: 1200px){
+			@include fontSize(16px);
+		}
+		@media (max-width: 992px){
+			display: none;
+		}
+		a{
+			@include color($lightGreen);
+			&:hover{
+				@include color($yellowGreen);
+			}
+		}
+		span{
+			display: inline-block;
+			margin: 0 5px;
+		}
+	}
+
+}
+
+.main_nav{
+	margin: 10px auto;
+	display: block;
+	width: 100%;
+	@media (max-width: 992px){
+		@include transition(all ease-in-out .3s);
+		@include bgColor($darkBlue);
+		position: fixed;
+		width: 270px;
+		height: 100%;
+		top: 0;
+		right: -270px;
+		margin: 0;
+
+	}
+	ul{
+		list-style: none;
+		text-align: center;
+		padding: 0;
+		margin-bottom: 0;
+		@media (max-width: 992px){
+			text-align: left;
+			margin-top: 50px;
+		}
+		li{
+			display: inline-block;
+			@media (max-width: 992px){
+				display: block;
+				margin-bottom: 10px;
+			}
+			a{
+				@include font($OpenSansRegular);
+				@include color($lightGray);
+				@include fontSize(14px);
+				padding: 5px 18px;
+				position: relative;
+				@media (max-width: 992px){
+					padding: 15px 20px;
+				}
+				&:hover{
+					@include color($yellowGreen);
+				}
+				&::after{
+					@include bgColor(#42535a);
+					content: " ";
+					width: 1px;
+					height: 10px;
+					position: absolute;
+					top: 38%;
+					right: 0;
+					display: block;
+					@media (max-width: 992px){
+						display: none;
+					}
+				}
+			}
+			&:last-child{
+				a{
+					&::after{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	.login_wrapper{
+		display: none;
+		@media (max-width: 992px){
+			display: block;
+			text-align: left;
+			margin: 10px 20px;
+		}
+	}
+}
+
+.hambuger_nav{
+	display: none;
+	width: 23px;
+	height: 23px;
+	cursor: pointer;
+	float: right;
+	margin: 8px 0;
+	position: relative;
+	z-index: 30;
+	@media (max-width: 992px){
+		display: block;
+	}
+	.bar{
+		@include bgColor($white);
+		@include transition(all ease-in-out .3s);
+		display: block;
+		width: 100%;
+		height: 1px;
+		margin: 10px 0;
+		position: relative;
+		&::before,
+		&::after{
+			@include bgColor($white);
+			@include transition(all ease-in-out .3s);
+			display: block;
+			width: 100%;
+			height: 1px;
+			content: " ";
+			position: absolute;
+		}
+		
+		&::before{
+			top: 8px;
+		}
+		
+		&::after{
+			bottom: 8px;
+		}
+
+	}
+}
+
+.nav_open{
+	.main_nav{
+		right: 0;
+		box-shadow: 0 0 7px lighten($black,10%);
+		z-index: 21;
+	}
+	.hambuger_nav{
+		.bar{
+			@include bgColor(transparent);
+			&::before{
+				@include transform(rotate(135deg));
+				top: 0;
+			}
+			
+			&::after{
+				@include transform(rotate(-135deg));
+				bottom: 0;
+			}
+		}
+	}
+}
+
+
+footer{
+	@include bgColor($white);
+	@include fontSize(14px);
+	padding: 10px 0;
+	.footer_wrapper{
+		min-height: 186px;
+		display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	@media (max-width: 992px){
+			display: block;
+			text-align: center;
+			min-height: inherit;
+			padding: 50px 0;
+    	}
+	}
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 10px 0;
+		@media (min-width: 1200px){
+			margin: 15px 0;
+		}
+		@media (max-width: 992px){
+			margin: 0 0 40px;
+		}
+		li{
+			display: inline-block;
+			@media (max-width: 992px){
+				display: block;
+				margin-bottom: 20px;
+			}
+			a{
+				@include color($darkBlue);
+				@include fontSize(14px);
+				position: relative;
+				padding: 5px 10px;
+				&:hover{
+					@include color($yellowGreen);
+				}
+				&::before{
+					@include bgColor(#42535a);
+					content: " ";
+					width: 1px;
+					height: 10px;
+					position: absolute;
+					top: 35%;
+					left: 0;
+					display: block;
+					@media (max-width: 992px){
+						display: none;
+					}
+				}
+			}
+			&:first-child{
+				a{
+					padding-left: 0;
+					&::before{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	.social_media{
+		text-align: right;
+		@media (max-width: 992px){
+			text-align: center;
+		}
+		a{
+			@include borderRadius(50%);
+			@include color($blue);
+			@include lineHeight(1);
+			@include fontSize(13px);
+			display: inline-block;
+			margin: 5px;
+			border: 1px solid $lightGray;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			vertical-align: middle;
+    		padding: 8px 0;
+    		&:hover{
+    			@include color($yellowGreen);
+    		}
+		}
+	}
+	.copyright{
+		@include bgColor($gray);
+		@include font($OpenSansRegular);
+		padding: 22px 0;
+		text-align: center;
+		p{
+			@include color($lightGray);
+			
+			margin-bottom: 0;
+
+		}	
+	}	
+}
+
+.main_content{
+	@media (max-width: 992px){
+		margin-top: 60px;
+	}
+}

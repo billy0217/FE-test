@@ -1,0 +1,168 @@
+section{
+	padding: 70px 0;
+	@media(max-width:768px){
+		padding: 30px 0;
+	}
+	h2{
+		text-align: center;
+		margin-bottom: 40px;
+		@media(max-width:768px){
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.search_state{
+	background-image:(url(../img/bg.jpg));
+	background-size: cover;
+	background-repeat: no-repeat;
+	
+	.tile_wrapper{
+		padding: 0 5px;
+		&.last{
+			@media(max-width:992px){
+				margin-top: -138px;
+				@media(max-width:768px){
+					margin-top: 0;
+				}
+			}
+		}
+		.tile{
+			@include borderRadius(10px);
+			margin-bottom: 10px;
+			break-inside: avoid;
+			display: flex;
+			align-items:flex-end;
+		
+			background-size: cover;
+			background-repeat: no-repeat;
+			overflow: hidden;
+
+
+			$area:(Western-Australia,South-Australia,Queensland,New-South-Wales,Victoria,Northern-Territory,Tasmania);
+			
+			@each $c in $area{
+				&.#{$c}{
+					background-image:(url(../img/#{$c}-bg.jpg));
+				}
+			}
+
+			&.vertical{
+				height: 370px;
+				@media(max-width:992px){
+					height: 130px;
+				}
+			}
+			&.horizontal{
+				height: 243px;
+				@media(max-width:992px){
+					height: 130px;
+				}
+			}
+			.title_wrapper{
+				padding: 10px 20px;
+				width: 100%;
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.75+100 */
+				background: -moz-linear-gradient(top,  rgba($black,0) 10%, rgba($black,0.85) 90%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top,  rgba($black,0) 10%,rgba($black,0.85) 90%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom,  rgba($black,0) 10%,rgba($black,0.85) 90%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#9e000000',GradientType=0 ); /* IE6-9 */
+			}
+
+			h3{
+				@include font($libreCaslon);
+				@include fontStyle( normal,normal);
+				@include fontSize(24px);
+				@include color($white);
+			}
+
+			h4{
+				@include font($OpenSansItalic);
+				@include fontSize(14px);
+				@include color($lightGreen);
+			}
+
+		}
+	}
+}
+
+.ad{
+	@include bgColor($white);
+	margin: 50px 0;
+	display: inline-block;
+	@media(max-width:768px){
+		margin: 30px -15px;
+		@include bgColor($lightBlue);
+	}
+
+}
+
+.calculator-wrapper{
+	margin: 50px 0;
+	@media(max-width:768px){
+		margin: 30px 0;
+	}
+	.calculator_img{
+		@include borderRadius(10px);
+		background-image: url(../img/calculator_img.jpg);
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 95%;
+		height: 270px;
+		margin: 0 0 20px;
+		@media(max-width:768px){
+			width: 90%;
+		}
+	}
+	.supporter{
+		@include font($OpenSansItalic);
+		@include color($gray);
+		@media(max-width:768px){
+			display: none;
+		}
+		&::before{
+			@include bgColor($gray);
+			content: " ";
+			width: 25px;
+			height: 2px;
+			display: block;
+			margin-bottom: 10px;
+		}
+	}
+
+	.calculator_content{
+		@include bgColor($darkBlue);
+		@include color($lightGray);
+		@include borderRadius(10px);
+		padding: 30px 45px;
+		margin-top: -240px;
+		@media(max-width:768px){
+			margin-top: -90px;
+			margin-left: 20px;
+			padding: 20px 25px;
+			max-width: 500px;
+			float:right;
+		}
+		h3{
+			@include font($libreCaslon);
+			@include fontStyle( normal,normal);
+			@include fontSize(24px);
+			margin-bottom: 20px;
+			&::before{
+				@include bgColor($white);
+				content: " ";
+				width: 45px;
+				height: 2px;
+				display: block;
+				margin-bottom: 20px;
+			}
+		}
+		.btn{
+			margin: 25px 0 0;
+			padding: 10px 30px;
+			&:hover{
+				@include bgColor(#72a50d);
+			}
+		}
+	}
+}

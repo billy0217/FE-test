@@ -1,0 +1,104 @@
+.top_banner{
+	background-image:(url(../img/banner-img.jpg));
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: 50px 0 100px;
+	@media(max-width: 768px){
+		padding: 0 0 50px;
+	}
+	.logo_wrapper{
+		max-width: 370px;
+		margin: 40px auto;
+		@media(max-width: 992px){
+			display: none;
+		}
+	}
+	.btn_wrapper{
+		@include bgColor($white);
+		margin-bottom: 30px;
+		display: none;
+		@media(max-width: 768px){
+			display: block;
+		}
+		a{
+			@include color($lightGray);
+			text-align: center;
+			display: inline-block;
+			float: left;
+			width: 50%;
+			padding: 15px;
+			border-bottom: 5px solid $lightGray;
+			&.active{
+				@include color($lightGreen);
+				border-bottom: 5px solid $lightGreen;
+			}
+		}
+	}
+}
+
+.search_form_wrapper{
+	@include borderRadius(10px);
+	@include bgColor(rgba($black, 0.4));
+	@include color($white);
+	border: 1px solid darken($lightGray ,5%);
+	padding: 30px 50px;
+	margin: 100px 0;
+	@media(max-width: 768px){
+		padding: 20px;
+		margin: 40px 0;	
+	}
+	form{
+		margin: 0;
+		.form-group {
+		    @media(max-width: 768px){
+				margin-bottom: 0;
+			}
+		}
+		.form-control{
+			width: 100%;
+			height: 45px;
+			@media(max-width: 768px){
+				margin-bottom: 0;
+			}
+		}
+		.checkbox{
+			@include fontSize(14px);
+			@media(max-width: 768px){
+				margin-bottom: 0;
+			}
+		}
+		select{
+			@media(max-width: 768px){
+				display: none;
+			}
+		}
+		.btn{
+			display: block;
+			height: 45px;
+			width: 100%;
+			@media(max-width: 768px){
+				@include bgColor($white);
+				@include color($green);
+				width: auto;
+				position: absolute;
+				right: 15px;
+				height: 43px;
+				top: 1px;
+			}
+			.fa{
+				display: none;
+				@media(max-width: 768px){
+					display: block;
+				}
+			}
+			
+			span{
+				@media(max-width: 768px){
+					display: none;
+				}
+			}
+		}
+	}
+	
+}

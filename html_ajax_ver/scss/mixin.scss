@@ -1,0 +1,75 @@
+// fonts
+
+$OpenSansBold :'open_sansbold';
+$OpenSansItalic: 'open_sansitalic';
+$OpenSansRegular: 'open_sansregular';
+$OpenSansSemibold: 'open_sanssemibold';
+$libreCaslon: 'libre_caslon_textregular';
+
+
+//color 
+
+$white : #fff;
+$black : #000;
+$lightGray: #9c9595;
+$gray : #5b5151;
+$darkGray: #282828;
+$green: #239619;
+$lightGreen : #83b819;
+$yellowGreen :#d6d809;
+$lightBlue : #16afdf;
+$darkBlue: #183444;
+$blue :#557b83;
+
+//131b20
+
+// mixin
+@mixin color($color){
+	color: $color;
+}
+
+@mixin bgColor($bgColor){
+	background-color: $bgColor;
+}
+
+@mixin font($font){
+	font-family: $font;
+}
+
+@mixin fontSize($fontsize){
+	font-size:$fontsize;
+}
+
+@mixin fontStyle( $style,$weight){
+	font-style: $style; 
+	font-weight: $weight; 
+}
+
+@mixin lineHeight($lineHeight){
+	line-height: $lineHeight;
+}
+
+@mixin borderRadius($borderRadius){
+	border-radius:$borderRadius;
+}
+
+@mixin filter($filter){
+	filter: $filter;
+}
+
+@mixin transition($transition){
+	transition:$transition;
+}
+
+@mixin transform($transform){
+	transform: $transform;
+}
+
+
+.flex-center{
+	display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
