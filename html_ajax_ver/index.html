@@ -89,23 +89,15 @@
                                     <form action="" class="serach_form">
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <select class="form-control">
-                                                    <option value="" disabled selected>Select State</option>
-                                                    <option value="All">All</option>
-                                                    <option value="VIC">VIC</option>
-                                                    <option value="NSW">NSW</option>
-                                                    <option value="NT">NT</option>
-                                                    <option value="QLD">QLD</option>
-                                                    <option value="WA">WA</option>
-                                                    <option value="SA">SA</option>
-                                                    <option value="TAS">TAS</option>
-                                                </select>
+                                                <div class="select-controls">
+                                                    <select class="form-control" id="state" name="state"></select>
+                                                </div>
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="row">
                                                     <div class="col-sm-9 col-xs-12">
                                                          <div class="form-group">
-                                                            <input name="property" type="text" class="form-control" id="location" placeholder="Search by region, suburb, postcode or address">
+                                                            <input name="property" type="text" class="form-control" id="properties" placeholder="Search by region, suburb, postcode or address">
                                                           </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -152,57 +144,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-11 col-sm-offset-1 col-md-12 col-md-offset-0">
+                            <div class="col-sm-10 col-sm-offset-1 col-md-12 col-md-offset-0">
                                 <div class="row">
-                                    <div class="tile_wrapper col-md-3 col-sm-6">
-                                        <div class="tile vertical Western-Australia">
-                                            <div class="title_wrapper">
-                                                <h3>Western Australia</h3>
-                                                <h4>563 Farms for sale</h4>
-                                            </div>
-                                        </div>
-                                        <div class="tile vertical South-Australia">
-                                            <div class="title_wrapper">
-                                                <h3>South Australia</h3>
-                                                <h4>679 Farms for sale</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tile_wrapper col-md-6 col-sm-6">
-                                        <div class="tile horizontal Queensland">
-                                            <div class="title_wrapper">
-                                                <h3>Queensland</h3>
-                                                <h4>852 Farms for sale</h4>
-                                            </div>
-                                        </div>
-                                        <div class="tile horizontal  New-South-Wales">
-                                            <div class="title_wrapper">
-                                                <h3>New South Wales</h3>
-                                                <h4>2699 Farms for sale</h4>
-                                            </div>
-                                        </div>
-                                        <div class="tile horizontal Victoria">
-                                            <div class="title_wrapper">
-                                                <h3>Victoria</h3>
-                                                <h4>3156 Farms for sale</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tile_wrapper col-md-3 col-sm-6 last">
-                                        <div class="clearfix">
-                                            <div class="tile vertical Northern-Territory">
-                                                <div class="title_wrapper">
-                                                    <h3>Northern Territory</h3>
-                                                    <h4>920 Farms for sale</h4>
-                                                </div>
-                                            </div>
-                                            <div class="tile vertical Tasmania">
-                                                <div class="title_wrapper">
-                                                    <h3>Tasmania</h3>
-                                                    <h4>251 Farms for sale</h4>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="tile_container">
                                     </div>
                                 </div>
                             </div>

@@ -39,7 +39,7 @@ section{
 			overflow: hidden;
 
 
-			$area:(Western-Australia,South-Australia,Queensland,New-South-Wales,Victoria,Northern-Territory,Tasmania);
+			$area:(western_australia,south_australia,queensland,new_south_wales,victoria,northern_territory,tasmania);
 			
 			@each $c in $area{
 				&.#{$c}{
@@ -74,6 +74,7 @@ section{
 				@include fontStyle( normal,normal);
 				@include fontSize(24px);
 				@include color($white);
+				text-transform: capitalize;
 			}
 
 			h4{

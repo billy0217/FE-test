@@ -1,4 +1,11 @@
-<?php include 'header.php'; ?>
+<?php 
+    include 'header.php'; 
+
+    $url = 'data.php';
+    $content = file_get_contents($url);
+    $json = json_decode($content, true);
+
+?>
             
 <main class="main_content">
     <section class="top_banner">
@@ -20,17 +27,30 @@
                         <form action="" class="serach_form">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <select class="form-control">
-                                        <option value="" disabled selected>Select State</option>
-                                        <option value="All">All</option>
-                                        <option value="VIC">VIC</option>
-                                        <option value="NSW">NSW</option>
-                                        <option value="NT">NT</option>
-                                        <option value="QLD">QLD</option>
-                                        <option value="WA">WA</option>
-                                        <option value="SA">SA</option>
-                                        <option value="TAS">TAS</option>
-                                    </select>
+                                    
+                                    <div class="select-controls">
+                                        <select class="form-control" name="state" id="state">
+                                            <option value="All" selected disabled>All</option>
+                                            <?php
+
+                                                $states = $json[1]["states"];
+
+                                                usort($states, function($a, $b) { 
+                                                  if ($a['count'] == $b['count']) {
+                                                    return $a['abbr'] > $b['abbr'] ? 1 : -1;
+                                                  } else {
+                                                    return $b['count'] - $a['count'];
+                                                  }
+                                                });
+
+                                                foreach ($states as $state) {
+                                                     echo '<option value="'.$state['abbr'].'">'.$state['abbr'].'</option>';;
+                                                }
+
+                                            ?>
+                                            
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="row">
@@ -71,30 +91,27 @@
         </div>
         <div class="featured_slider">
             <?php 
-                $url = 'data.php';
-                $content = file_get_contents($url);
-                $json = json_decode($content, true);
 
-                $properties = $json["properties"];
-                for($i=0; $i<count($properties); $i++) {
+                $properties = $json[0]["properties"];
+                foreach($properties as $property) {
 
                     echo '<div class="slide">';
                         echo '<div class="property">';
                             echo '<div class="img_wrapper">';
-                                echo '<img src="img/'.$properties[$i]["img"].'" alt="">';
-                                echo '<p class="price">$'.$properties[$i]["price"].'</p>';
+                                echo '<img src="img/'.$property["img"].'" alt="">';
+                                echo '<p class="price">$'.$property["price"].'</p>';
                             echo '</div>';
                             echo '<div class="property_content">';
                                 echo '<div class="clearfix">';
                                     echo '<div class="col-sm-7 col-xs-7 left-col">';
-                                        echo '<p class="category">'.$properties[$i]["category"].'</p>';
-                                        echo '<p><span class="number">'.$properties[$i]["numver"].'</span> <span class="street">'.$properties[$i]["street"].'</span>, <span class="suburb">'.$properties[$i]["suburb"].'</span> <span class="postCode">'.$properties[$i]["postCode"].'</span> <span class="state">'.$properties[$i]["state"].'</span></p>';
+                                        echo '<p class="category">'.$property["category"].'</p>';
+                                        echo '<p><span class="number">'.$property["numver"].'</span> <span class="street">'.$property["street"].'</span>, <span class="suburb">'.$property["suburb"].'</span> <span class="postCode">'.$property["postCode"].'</span> <span class="state">'.$property["state"].'</span></p>';
                                     echo '</div>';
                                     echo '<div class="col-sm-5 col-xs-5 text-center right-col">';
                                         echo '<div class="map_wrapper">';
                                             echo '<img src="img/map.jpg" alt="">';
                                         echo '</div>';
-                                        echo '<p><span class="hectares">'.$properties[$i]["hectares"].'</span>H <span class="acres">'.$properties[$i]["acres"].'</span>AC</p>';
+                                        echo '<p><span class="hectares">'.$property["hectares"].'</span>H <span class="acres">'.$property["acres"].'</span>AC</p>';
                                     echo '</div>';
                                 echo '</div>';
                             echo '</div>';
@@ -119,56 +136,55 @@
             <div class="row">
                 <div class="col-sm-11 col-sm-offset-1 col-md-12 col-md-offset-0">
                     <div class="row">
-                        <div class="tile_wrapper col-md-3 col-sm-6">
-                            <div class="tile vertical Western-Australia">
-                                <div class="title_wrapper">
-                                    <h3>Western Australia</h3>
-                                    <h4>563 Farms for sale</h4>
-                                </div>
-                            </div>
-                            <div class="tile vertical South-Australia">
-                                <div class="title_wrapper">
-                                    <h3>South Australia</h3>
-                                    <h4>679 Farms for sale</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile_wrapper col-md-6 col-sm-6">
-                            <div class="tile horizontal Queensland">
-                                <div class="title_wrapper">
-                                    <h3>Queensland</h3>
-                                    <h4>852 Farms for sale</h4>
-                                </div>
-                            </div>
-                            <div class="tile horizontal  New-South-Wales">
-                                <div class="title_wrapper">
-                                    <h3>New South Wales</h3>
-                                    <h4>2699 Farms for sale</h4>
-                                </div>
-                            </div>
-                            <div class="tile horizontal Victoria">
-                                <div class="title_wrapper">
-                                    <h3>Victoria</h3>
-                                    <h4>3156 Farms for sale</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tile_wrapper col-md-3 col-sm-6 last">
-                            <div class="clearfix">
-                                <div class="tile vertical Northern-Territory">
-                                    <div class="title_wrapper">
-                                        <h3>Northern Territory</h3>
-                                        <h4>920 Farms for sale</h4>
-                                    </div>
-                                </div>
-                                <div class="tile vertical Tasmania">
-                                    <div class="title_wrapper">
-                                        <h3>Tasmania</h3>
-                                        <h4>251 Farms for sale</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        <?php
+
+                            $statesList = $json[1]["states"];
+
+                            $i = 0;
+                            foreach($statesList as $state){
+
+                                if(($i%7) <= 1 ||  ($i%7) == 5 || ($i%7) ==6 ){
+                                    $proportion = 'vertical'; 
+                                }else{
+                                    $proportion = 'horizontal';
+                                }
+
+                                if(($i%7) == 0 ){
+                                    $openingTag = '<div class="tile_wrapper col-md-3 col-sm-6">'; 
+                                    $closeingTag = '';
+                                }elseif(($i%7) == 2 ){
+                                    $openingTag = '</div><div class="tile_wrapper col-md-6 col-sm-6">';
+                                    $closeingTag = '';
+                                }elseif(($i%7) == 5 ){
+                                    $openingTag = '</div><div class="tile_wrapper col-md-3 col-sm-6 last">'; 
+                                    $closeingTag = '';
+                                }elseif(($i%7) == 6 ){
+                                    $openingTag = '';
+                                    $closeingTag = '</div>';
+                                }else{
+                                    $openingTag = '';
+                                    $closeingTag = '';
+                                }
+
+                                $className = preg_replace('/\s+/', '_', $state["name"]);
+
+                                echo $openingTag;    
+                                    echo'<div class="tile '.$proportion .' '.$className.'">';
+                                        echo'<div class="title_wrapper">';
+                                            echo'<h3>'.$state["name"].'</h3>';
+                                            echo'<h4>'.$state["count"].' Farms for sale</h4>';
+                                        echo'</div>';
+                                    echo'</div>';
+                                echo $closeingTag;
+
+                                $i++;
+                            }
+
+                        ?>
+
+                        
+                        
                     </div>
                 </div>
             </div>
